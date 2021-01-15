@@ -1,0 +1,38 @@
+<ImageRow>:
+    cols: 2
+    source: ''
+    name: ''
+    padding: dp(3)
+    AsyncImage:
+        source: root.source
+    Label:
+        text: root.name
+        color: (0,0,0,1)
+
+<Buscador>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDIconButton:
+                icon: 'magnify'
+
+            MDTextField:
+                id: search_field
+                hint_text: 'Buscar imagen'
+                on_text: root.set_list_images(self.text, True)
+
+        RecycleView:
+            id: rv
+            viewclass: 'ImageRow'
+
+            RecycleBoxLayout:
+                default_size: None, dp(64)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
